@@ -1,0 +1,26 @@
+.wrapper {
+    width: auto;
+    margin: 0 auto;
+    border: solid black 1px;
+    text-align: center;
+}
+
+.wrapper header {
+    height: 3rem;
+    margin: .5rem;
+    border-bottom: black solid 1px;
+}
+
+.wrapper .wrapperButtons button {
+    background: none;
+    margin: 0.3rem;
+    border-radius: 30%;
+}
+
+.wrapper .wrapperButtons #number0 {
+    margin-left: .5rem;
+}
+
+.wrapper .wrapperButtons #point {
+    margin-left: .5rem;
+}
