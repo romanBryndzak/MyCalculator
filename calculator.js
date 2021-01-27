@@ -21,9 +21,7 @@ buttons = [
     buttonChange = document.getElementById('btnChange'),
     output = document.getElementById('output1'),
     output2 = document.getElementById('output2'),
-    input = document.querySelector('input'),
 ];
-
 
 let a;
 let b;
@@ -109,7 +107,45 @@ function actionOnClick(val) {
     }
 }
 
-// onButton = [
+function onClickValueButton(eventObject) {
+    let currentElement = eventObject.currentTarget;
+    let valueCurrentElement = currentElement.innerHTML;
+    actionOnClick(valueCurrentElement)
+}
+
+function onClickButtonAddEventListener(i) {
+    buttons[i].addEventListener('click', onClickValueButton);
+}
+
+for (let i = 0; i < buttons.length; i++) {
+    onClickButtonAddEventListener(i)
+}
+
+
+// let arrayButtonsListener = [
+//     button1.addEventListener('click', onNumber1),
+//     button2.addEventListener('click', onNumber2),
+//     button3.addEventListener('click', onNumber3),
+//     button4.addEventListener('click', onNumber4),
+//     button5.addEventListener('click', onNumber5),
+//     button6.addEventListener('click', onNumber6),
+//     button7.addEventListener('click', onNumber7),
+//     button8.addEventListener('click', onNumber8),
+//     button9.addEventListener('click', onNumber9),
+//     button0.addEventListener('click', onNumber0),
+//     buttonPoint.addEventListener('click', onPoint),
+//     buttonDivide.addEventListener('click', onDivide),
+//     buttonMultiply.addEventListener('click', onMultiply),
+//     buttonMinus.addEventListener('click', onMinus),
+//     buttonPlus.addEventListener('click', onPlus),
+//     buttonSum.addEventListener('click', onSum),
+//     buttonCE.addEventListener('click', onCE),
+//     buttonC.addEventListener('click', onC),
+//     buttonPercent.addEventListener('click', onPercent),
+//     buttonChange.addEventListener('click', onChange),
+// ]
+
+// let onButton = [
 //     onNumber1 = () => {
 //         actionOnClick('1');
 //     },
@@ -171,30 +207,3 @@ function actionOnClick(val) {
 //         actionOnClick('-/+')
 //     },
 // ]
-
-function onClickValueButton(eventObject) {
-    let currentElement = eventObject.currentTarget;
-    let valueCurrentElement = currentElement.innerHTML;
-    actionOnClick(valueCurrentElement)
-}
-
-buttons[0].addEventListener('click', onClickValueButton);
-button2.addEventListener('click', onNumber2);
-button3.addEventListener('click', onNumber3);
-button4.addEventListener('click', onNumber4);
-button5.addEventListener('click', onNumber5);
-button6.addEventListener('click', onNumber6);
-button7.addEventListener('click', onNumber7);
-button8.addEventListener('click', onNumber8);
-button9.addEventListener('click', onNumber9);
-button0.addEventListener('click', onNumber0);
-buttonPoint.addEventListener('click', onPoint);
-buttonDivide.addEventListener('click', onDivide);
-buttonMultiply.addEventListener('click', onMultiply);
-buttonMinus.addEventListener('click', onMinus);
-buttonPlus.addEventListener('click', onPlus);
-buttonSum.addEventListener('click', onSum);
-buttonCE.addEventListener('click', onCE);
-buttonC.addEventListener('click', onC);
-buttonPercent.addEventListener('click', onPercent);
-buttonChange.addEventListener('click', onChange);
