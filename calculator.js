@@ -72,23 +72,23 @@ function actionOnClick(val) {
 
         // якщо натиснуто символ 'СЕ' або Backspace
     } else if (val === 'CE') {
-       if (output.textContent !== ''){
-           let nu = output.textContent
-           output.textContent = ''
-           let numb = [...nu]
-           numb.pop()
-           numb.forEach(function (item) {
-               output.textContent += item
-           })
-       } else if (output2.textContent !== ''){
-           let nu = output2.textContent
-           output2.textContent = ''
-           let numb = [...nu]
-           numb.pop()
-           numb.forEach(function (item) {
-               output2.textContent += item
-           })
-       }
+        if (output.textContent !== '') {
+            let nu = output.textContent
+            output.textContent = ''
+            let numb = [...nu]
+            numb.pop()
+            numb.forEach(function (item) {
+                output.textContent += item
+            })
+        } else if (output2.textContent !== '') {
+            let nu = output2.textContent
+            output2.textContent = ''
+            let numb = [...nu]
+            numb.pop()
+            numb.forEach(function (item) {
+                output2.textContent += item
+            })
+        }
         // якщо значення val (те яке очікуємо) рівне +,-,*,/.
     } else if (val === '+' || val === '-'
         || val === '*' || val === '/') {
@@ -109,70 +109,76 @@ function actionOnClick(val) {
     }
 }
 
-onButton = [
-    onNumber1 = () => {
-        actionOnClick('1');
-    },
-    onNumber2 = () => {
-        actionOnClick('2');
-    },
-    onNumber3 = () => {
-        actionOnClick('3');
-    },
-    onNumber4 = () => {
-        actionOnClick('4');
-    },
-    onNumber5 = () => {
-        actionOnClick('5');
-    },
-    onNumber6 = () => {
-        actionOnClick('6');
-    },
-    onNumber7 = () => {
-        actionOnClick('7');
-    },
-    onNumber8 = () => {
-        actionOnClick('8');
-    },
-    onNumber9 = () => {
-        actionOnClick('9');
-    },
-    onNumber0 = () => {
-        actionOnClick('0');
-    },
-    onPoint = () => {
-        actionOnClick('.')
-    },
-    onDivide = () => {
-        actionOnClick('/')
-    },
-    onMultiply = () => {
-        actionOnClick('*')
-    },
-    onMinus = () => {
-        actionOnClick('-')
-    },
-    onPlus = () => {
-        actionOnClick('+')
-    },
-    onSum = () => {
-        actionOnClick('=')
-    },
-    onCE = () => {
-        actionOnClick('CE')
-    },
-    onC = () => {
-        actionOnClick('C')
-    },
-    onPercent = () => {
-        actionOnClick('%')
-    },
-    onChange = () => {
-        actionOnClick('-/+')
-    },
-]
+// onButton = [
+//     onNumber1 = () => {
+//         actionOnClick('1');
+//     },
+//     onNumber2 = () => {
+//         actionOnClick('2');
+//     },
+//     onNumber3 = () => {
+//         actionOnClick('3');
+//     },
+//     onNumber4 = () => {
+//         actionOnClick('4');
+//     },
+//     onNumber5 = () => {
+//         actionOnClick('5');
+//     },
+//     onNumber6 = () => {
+//         actionOnClick('6');
+//     },
+//     onNumber7 = () => {
+//         actionOnClick('7');
+//     },
+//     onNumber8 = () => {
+//         actionOnClick('8');
+//     },
+//     onNumber9 = () => {
+//         actionOnClick('9');
+//     },
+//     onNumber0 = () => {
+//         actionOnClick('0');
+//     },
+//     onPoint = () => {
+//         actionOnClick('.')
+//     },
+//     onDivide = () => {
+//         actionOnClick('/')
+//     },
+//     onMultiply = () => {
+//         actionOnClick('*')
+//     },
+//     onMinus = () => {
+//         actionOnClick('-')
+//     },
+//     onPlus = () => {
+//         actionOnClick('+')
+//     },
+//     onSum = () => {
+//         actionOnClick('=')
+//     },
+//     onCE = () => {
+//         actionOnClick('CE')
+//     },
+//     onC = () => {
+//         actionOnClick('C')
+//     },
+//     onPercent = () => {
+//         actionOnClick('%')
+//     },
+//     onChange = () => {
+//         actionOnClick('-/+')
+//     },
+// ]
 
-button1.addEventListener('click', onNumber1);
+function onClickValueButton(eventObject) {
+    let currentElement = eventObject.currentTarget;
+    let valueCurrentElement = currentElement.innerHTML;
+    actionOnClick(valueCurrentElement)
+}
+
+buttons[0].addEventListener('click', onClickValueButton);
 button2.addEventListener('click', onNumber2);
 button3.addEventListener('click', onNumber3);
 button4.addEventListener('click', onNumber4);
