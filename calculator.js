@@ -19,7 +19,8 @@ buttons = [
     buttonC = document.getElementById('C'),
     buttonPercent = document.getElementById('percent'),
     buttonChange = document.getElementById('btnChange'),
-    output = document.getElementById('output1'),
+    output= document.getElementById('output'),
+    output1 = document.getElementById('output1'),
     output2 = document.getElementById('output2'),
 ];
 
@@ -30,20 +31,22 @@ let action = [];
 // функція приймає значення кнопки або ключ клавіші
 function actionOnClick(val) {
 
+
     function cleanOutput() {
         output.textContent = ''
+    }
+
+    function cleanOutput1() {
+        output1.textContent = ''
     }
 
     function cleanOutput2() {
         output2.textContent = ''
     }
 
-    // якщо натиснуто знак дорівнює або Enter
-    if (val === '=') {
+
+    if (val === '=' || val === 'Enter') {
         b = +output.textContent;
-        output2.textContent += output.textContent;
-        cleanOutput();
-        output.textContent += ` ${val} `;
         let result;
         switch (action) {
             case '+':
@@ -58,18 +61,30 @@ function actionOnClick(val) {
             case '/':
                 result = a / b;
                 break;
+            default:
+                result = '';
+                break;
         }
-        output.textContent += result;
-        a = result;
-        action = [];
+        if (result === '') {
+            output.textContent += ``;
+        } else {
+            output.textContent += ` = `;
+            output.textContent += result;
+            a = result;
+            output1.textContent += output.textContent;
+            output2.textContent += output1.textContent;
+            output2.textContent += '; ';
+            cleanOutput();
+            cleanOutput1();
+            action = []
+        }
 
         // якщо натиснуто символ 'С' або Del
-    } else if (val === 'C') {
-        cleanOutput();
+    } else if (val === 'C' || val === 'Delete') {
         cleanOutput2();
 
         // якщо натиснуто символ 'СЕ' або Backspace
-    } else if (val === 'CE') {
+    } else if (val === 'CE' || val === 'Backspace') {
         if (output.textContent !== '') {
             let nu = output.textContent
             output.textContent = ''
@@ -78,13 +93,13 @@ function actionOnClick(val) {
             numb.forEach(function (item) {
                 output.textContent += item
             })
-        } else if (output2.textContent !== '') {
-            let nu = output2.textContent
-            output2.textContent = ''
+        } else if (output1.textContent !== '') {
+            let nu = output1.textContent
+            output1.textContent = ''
             let numb = [...nu]
             numb.pop()
             numb.forEach(function (item) {
-                output2.textContent += item
+                output1.textContent += item
             })
         }
         // якщо значення val (те яке очікуємо) рівне +,-,*,/.
@@ -92,13 +107,17 @@ function actionOnClick(val) {
         || val === '*' || val === '/') {
         action = val;
         output.textContent += ` ${val} `;
-        output2.textContent += output.textContent;
+        output1.textContent += output.textContent;
         cleanOutput();
 
         // якщо action визначено
     } else if (action === '+' || action === '-'
         || action === '*' || action === '/') {
         output.textContent += val;
+
+        // якщо жодна з умова не виконана, записуємо значення val в поле
+    } else if (val === 'on') {
+        output.textContent += ''
 
         // якщо жодна з умова не виконана, записуємо значення val в поле
     } else {
@@ -113,8 +132,16 @@ function onClickValueButton(eventObject) {
     actionOnClick(valueCurrentElement)
 }
 
+
+function keyupValueButton(event) {
+    let valueCurrentElement = event.key;
+    console.log(valueCurrentElement)
+    actionOnClick(valueCurrentElement)
+}
+
 function onClickButtonAddEventListener(i) {
     buttons[i].addEventListener('click', onClickValueButton);
+    buttons[i].addEventListener('keydown', keyupValueButton);
 }
 
 for (let i = 0; i < buttons.length; i++) {
