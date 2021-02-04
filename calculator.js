@@ -44,6 +44,15 @@ function actionOnClick(val) {
         output2.textContent = ''
     }
 
+    function deleteOneSymbol(out) {
+        let nu = out.textContent
+        out.textContent = ''
+        let numb = [...nu]
+        numb.pop()
+        numb.forEach(function (item) {
+            out.textContent += item
+        })
+    }
 
     if (val === '=' || val === 'Enter') {
         b = +output.textContent;
@@ -81,26 +90,17 @@ function actionOnClick(val) {
 
         // якщо натиснуто символ 'С' або Del
     } else if (val === 'C' || val === 'Delete') {
+        cleanOutput();
+        cleanOutput1();
         cleanOutput2();
 
         // якщо натиснуто символ 'СЕ' або Backspace
     } else if (val === 'CE' || val === 'Backspace') {
         if (output.textContent !== '') {
-            let nu = output.textContent
-            output.textContent = ''
-            let numb = [...nu]
-            numb.pop()
-            numb.forEach(function (item) {
-                output.textContent += item
-            })
+           deleteOneSymbol(output)
+            a = output.textContent;
         } else if (output1.textContent !== '') {
-            let nu = output1.textContent
-            output1.textContent = ''
-            let numb = [...nu]
-            numb.pop()
-            numb.forEach(function (item) {
-                output1.textContent += item
-            })
+            deleteOneSymbol(output1)
         }
         // якщо значення val (те яке очікуємо) рівне +,-,*,/.
     } else if (val === '+' || val === '-'
