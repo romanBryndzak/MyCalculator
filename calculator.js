@@ -45,6 +45,7 @@ function actionOnClick(val) {
         output2.textContent = ''
     }
 
+
     function lengthActionThree() {
         a = arrayAction[0];
         action = arrayAction[1];
@@ -52,11 +53,23 @@ function actionOnClick(val) {
     }
 
     function lengthActionFive() {
+        checkSymbolForAction()
         lengthActionThree()
         startOperation()
         a = result;
         action = arrayAction[3];
         b = arrayAction[4];
+    }
+
+    function checkSymbolForAction() {
+        if (arrayAction.includes('-' || '+' && '*' || '/') === true) {
+            let cutOutElements = arrayAction.splice(2, 3);
+            let temporaryVal = arrayAction.splice(1, 1)
+            let lastVal = arrayAction.splice(0, 1)
+            let newArray = cutOutElements.concat(temporaryVal);
+            arrayAction = newArray.concat(lastVal);
+        }
+
     }
 
     function deleteOneSymbol(out) {
